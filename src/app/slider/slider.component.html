@@ -1,4 +1,4 @@
-<div id="main-container" class="moj-container-carousel">
+<div id="main-container" (mouseenter)="stopAutoSlide()" (mouseleave)="intervalNext()">
   <!-- <carousel [cellsToShow]="1" class="showArrows" [images] = "slides">
   </carousel> -->
   <div *ngIf="initialized" class="carousel">
@@ -17,9 +17,14 @@
         <img [src]="slide.yazdah" alt="main-slide-image" class="main-slide" loading="lazy">
       </picture>
     </div>
+    <!-- <div class="carousel-cell active-slide" style="background-color: red;"></div>
+    <div class="carousel-cell" style="background-color: blue;"></div>
+    <div class="carousel-cell" style="background-color: green;"></div>
+    <div class="carousel-cell" style="background-color: yellow;"></div> -->
   </div>
+  <div class="carousel-arrow carousel-arrow-left cursor-pointer" (click)="goPrev()"></div>
+  <div class="carousel-arrow carousel-arrow-right cursor-pointer" (click)="goNext()"></div>
+
 </div>
 
-<button (click)="goPrev()">PREV</button>
-<button (click)="goNext()">NEXT</button>
 
