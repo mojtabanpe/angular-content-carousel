@@ -1,0 +1,25 @@
+<div id="main-container" class="moj-container-carousel">
+  <!-- <carousel [cellsToShow]="1" class="showArrows" [images] = "slides">
+  </carousel> -->
+  <div *ngIf="initialized" class="carousel">
+    <div class="carousel-cell" *ngFor="let slide of slides">
+      <picture>
+        <source media="(max-width:375px)" [srcset]="slide.yek">
+        <source media="(max-width:430px)" [srcset]="slide.do">
+        <source media="(max-width:600px)" [srcset]="slide.se">
+        <source media="(max-width:768px)" [srcset]="slide.char">
+        <source media="(max-width:900px)" [srcset]="slide.panj">
+        <source media="(max-width:1024px)" [srcset]="slide.shish">
+        <source media="(max-width:1280px)" [srcset]="slide.haft">
+        <source media="(max-width:1366px)" [srcset]="slide.hasht">
+        <source media="(max-width:1440px)" [srcset]="slide.noh">
+        <source media="(max-width:16000px)" [srcset]="slide.dah">
+        <img [src]="slide.yazdah" alt="main-slide-image" class="main-slide" loading="lazy">
+      </picture>
+    </div>
+  </div>
+</div>
+
+<button (click)="goPrev()">PREV</button>
+<button (click)="goNext()">NEXT</button>
+

@@ -1,0 +1,36 @@
+* {
+  transition: all .5s ease-in
+}
+.carousel {
+  z-index: 0;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+}
+.moj-container-carousel {
+  height: 500px;
+  width: 100vw;
+  position: relative;
+}
+.carousel-cell {
+  width: 100%;
+  height: 500px;
+  display: ruby;
+  
+}
+.main-slide {
+  width: 100%;
+  height: 100%;
+}
+picture, source {
+  width: 100% !important;
+  height: 100% !important;
+}
+picture {
+  width: 100%;
+}
+::ng-deep .moj-container-carousel .carousel-cells .carousel-cell img {
+  object-fit: cover !important;
+}
