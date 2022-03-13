@@ -1,22 +1,22 @@
 /* * {
   transition: all .5s ease-in
 } */
-@keyframes grow {
+ @keyframes grow {
   from {width: 0;}
   to {width: 100%;}
 }
-@keyframes shrink {
+ @keyframes shrink {
   from {width: 100%;}
   to {width: 0;}
 }
 
-#main-container {
+:host ::ng-deep #main-container {
   height: 500px;
   width: 100vw;
   position: relative;
 }
 
-.carousel {
+:host ::ng-deep .carousel {
   z-index: 0;
   height: 100%;
   position: relative;
@@ -25,41 +25,41 @@
   display: flex;
 }
 
-.carousel-cell {
+:host ::ng-deep .carousel-cell {
   width: 0;
   height: 500px;
   display: ruby;
 }
 
-.carousel-cell.active-slide {
+:host ::ng-deep .carousel-cell.active-slide {
   width: 100%;
   animation-name: grow;
-  animation-duration: .1s;
+  animation-duration: .2s;
 }
-.carousel-cell.deactive-slide {
+:host ::ng-deep .carousel-cell.deactive-slide {
   width: 0;
   animation-name: shrink;
-  animation-duration: .1s;
+  animation-duration: .2s;
 }
-.main-slide {
+:host ::ng-deep .main-slide {
   width: 100%;
   height: 100%;
 }
-picture, source {
+:host ::ng-deep picture, source {
   width: 100% !important;
   height: 100% !important;
 }
-picture {
+:host ::ng-deep picture {
   width: 100%;
 }
 ::ng-deep #main-container .carousel-cells .carousel-cell img {
   object-fit: cover !important;
 }
-img {
+:host ::ng-deep img {
   object-fit: cover;
 }
 
-.carousel-arrow  {
+:host ::ng-deep .carousel-arrow  {
   position: absolute;
   width: 40px;
   height: 40px;
@@ -69,15 +69,15 @@ img {
   top: 50%;
 }
 
-.carousel-arrow-left {
+:host ::ng-deep .carousel-arrow-left {
   left: 20px;
 }
 
-.carousel-arrow-right {
+:host ::ng-deep .carousel-arrow-right {
   right: 20px;
 }
 
-.carousel-arrow::before {
+:host ::ng-deep .carousel-arrow::before {
 	border-style: solid;
 	border-width: 2.5px 2.5px 0 0;
 	content: '';
@@ -90,10 +90,10 @@ img {
 	width: 7px;
 }
 
-.carousel-arrow-left::before {
+:host ::ng-deep .carousel-arrow-left::before {
   transform: rotate(-135deg)
 }
 
-.carousel-arrow-right::before {
+:host ::ng-deep .carousel-arrow-right::before {
   transform: rotate(45deg)
 }
