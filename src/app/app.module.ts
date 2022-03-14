@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { AngularContentCarouselModule } from 'angular-content-carousel';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -10,7 +13,10 @@ import { AppComponent } from './app.component';
     SliderComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    AngularContentCarouselModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
