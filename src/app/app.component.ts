@@ -14,7 +14,6 @@ export interface Slide {
   dah: string;
   yazdah: string;
 }
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

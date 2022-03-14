@@ -1,0 +1,100 @@
+/* * {
+  transition: all .5s ease-in
+} */
+@keyframes grow {
+    from {width: 0;}
+    to {width: 100%;}
+  }
+   @keyframes shrink {
+    from {width: 100%;}
+    to {width: 0;}
+  }
+  
+  :host ::ng-deep #main-container {
+    height: 500px;
+    width: 100vw;
+    position: relative;
+  }
+  
+  :host ::ng-deep .carousel {
+    z-index: 0;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+  }
+  
+  :host ::ng-deep .carousel-cell {
+    width: 0;
+    height: 500px;
+    display: ruby;
+  }
+  
+  :host ::ng-deep .carousel-cell.active-slide {
+    width: 100%;
+    animation-name: grow;
+    animation-duration: .2s;
+  }
+  :host ::ng-deep .carousel-cell.deactive-slide {
+    width: 0;
+    animation-name: shrink;
+    animation-duration: .2s;
+  }
+  :host ::ng-deep .main-slide {
+    width: 100%;
+    height: 100%;
+  }
+  :host ::ng-deep picture, source {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  :host ::ng-deep picture {
+    width: 100%;
+  }
+  ::ng-deep #main-container .carousel-cells .carousel-cell img {
+    object-fit: cover !important;
+  }
+  :host ::ng-deep img {
+    object-fit: cover;
+  }
+  
+  :host ::ng-deep .carousel-arrow  {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    top: 50%;
+  }
+  
+  :host ::ng-deep .carousel-arrow-left {
+    left: 20px;
+  }
+  
+  :host ::ng-deep .carousel-arrow-right {
+    right: 20px;
+  }
+  
+  :host ::ng-deep .carousel-arrow::before {
+      border-style: solid;
+      border-width: 2.5px 2.5px 0 0;
+      content: '';
+      display: inline-block;
+      height: 7px;
+      left: 14px;
+      position: relative;
+      top: 14px;
+      vertical-align: top;
+      width: 7px;
+  }
+  
+  :host ::ng-deep .carousel-arrow-left::before {
+    transform: rotate(-135deg)
+  }
+  
+  :host ::ng-deep .carousel-arrow-right::before {
+    transform: rotate(45deg)
+  }
+  
