@@ -25,7 +25,7 @@ export class AngularContentCarouselComponent implements AfterViewInit {
   @Input() loop: boolean = true;
   @Input() autoplay: boolean = true;
   @Input() overflowCellsLimit: number = 1;
-  @Input() dots: boolean = false;;
+  @Input() dots: boolean = true;;
   @Input() slides: Array<Slide> = [];
   lengthOfCarousell = 0;
   counter = 0;
@@ -33,9 +33,9 @@ export class AngularContentCarouselComponent implements AfterViewInit {
   autoInterval = 5000;
   autoIntervalObject: any;
   initialized = false;
-  
+
   isBrowser = false;
-  
+
   constructor( @Inject(PLATFORM_ID) public platformId: any, private cdrf: ChangeDetectorRef) {
     
   }
@@ -47,13 +47,15 @@ export class AngularContentCarouselComponent implements AfterViewInit {
     } else {
       this.lengthOfCarousell = this.slides.length;
     }
-    document.getElementsByClassName('carousel-cell')[0].classList.add('active-slide'); 
-    document.getElementsByClassName('carousel-cell')[this.lengthOfCarousell - 1].classList.add('deactive-slide'); 
-    
+    setTimeout(() => {
+      document.getElementsByClassName('carousel-cell')[0].classList.add('active-slide'); 
+      document.getElementsByClassName('carousel-cell')[this.lengthOfCarousell - 1].classList.add('deactive-slide'); 
+      document.getElementsByClassName('angular-content-carousel-dot')[0].classList.add('active-dot');
+    }, 50);
     this.intervalNext();
     this.cdrf.detectChanges();
   }
-  
+
   intervalNext(): void {
     clearInterval(this.autoIntervalObject);
     this.autoIntervalObject = setInterval(() => {
@@ -62,119 +64,55 @@ export class AngularContentCarouselComponent implements AfterViewInit {
         this.resetSlider();
         return;
       }
-      document.getElementsByClassName('deactive-slide')[0]?.classList.remove('deactive-slide');
-      document.getElementsByClassName('active-slide')[0]?.classList.add('deactive-slide');
-      document.getElementsByClassName('active-slide')[0].classList.remove('active-slide'); 
-      document.getElementsByClassName('carousel-cell')[this.counter].classList.add('active-slide');
-  
-  
-  
-      
-      // const cells = document.getElementsByClassName('carousel-cell');
-      // const howMuchTranslate = 'translateX(-' + this.counter * this.sizeOfCarousel + 'px)';
-      // for (let index = 0; index < cells.length; index++) {
-      //   const element = cells[index];
-      //   (element as HTMLElement).style.transform = howMuchTranslate;
-      // }
+      this.changeActivityElements();
     }, this.autoInterval);
   }
-  
+
   goNext(): void {
     this.counter ++;
     if (this.counter === this.lengthOfCarousell) {
       this.resetSlider();
       return;
     }
-    // const cells = document.getElementsByClassName('carousel-cell');
-    // const howMuchTranslate = 'translateX(-' + this.counter * this.sizeOfCarousel + 'px)';
-    // for (let index = 0; index < cells.length; index++) {
-    //   const element = cells[index];
-    //   (element as HTMLElement).style.transform = howMuchTranslate;
-    // }
-    document.getElementsByClassName('deactive-slide')[0]?.classList.remove('deactive-slide');
-    document.getElementsByClassName('active-slide')[0]?.classList.add('deactive-slide');
-    document.getElementsByClassName('active-slide')[0]?.classList.remove('active-slide'); 
-    document.getElementsByClassName('carousel-cell')[this.counter].classList.add('active-slide');
+    this.changeActivityElements();
     this.intervalNext();
   }
-  
+
   goPrev(): void {  
     if (this.counter === 0) {
       this.goToLastSlide();
       return;
     }
     this.counter --;
-    // const cells = document.getElementsByClassName('carousel-cell');
-    // const howMuchTranslate = 'translateX(-' + (this.counter) * this.sizeOfCarousel + 'px)';  
-    // for (let index = 0; index < cells.length; index++) {
-    //   const element = cells[index];
-    //   (element as HTMLElement).style.transform = howMuchTranslate;
-    // }
-    
-    document.getElementsByClassName('deactive-slide')[0]?.classList.remove('deactive-slide');
-    document.getElementsByClassName('active-slide')[0].classList.add('deactive-slide');
-    document.getElementsByClassName('active-slide')[0].classList.remove('active-slide'); 
-    document.getElementsByClassName('carousel-cell')[this.counter].classList.add('active-slide');
+    this.changeActivityElements();
     this.intervalNext();
   }
-  
+
   resetSlider(): void {
-    
-    // const cells = document.getElementsByClassName('carousel-cell');
-    // for (let index = 0; index < cells.length; index++) {
-    //   const element = cells[index];
-    //   (element as HTMLElement).style.transition = 'none';
-    //   setTimeout(() => {
-    //     (element as HTMLElement).style.transition = 'all .5s ease-in';
-    //   }, 100);
-    //   (element as HTMLElement).style.transform = 'translateX(0)';
-    // }
     this.counter = 0;
-    const activeElement = (document.getElementsByClassName('active-slide')[0] as HTMLElement);
-    const deactiveElement = (document.getElementsByClassName('deactive-slide')[0] as HTMLElement);
-    const firstElement = (document.getElementsByClassName('carousel-cell')[0] as HTMLElement);
-    // firstElement.style.animationDirection = 'reverse';
-    // activeElement.style.animationDirection = 'reverse';
-    // deactiveElement.style.animationDirection = 'reverse';
-    // setTimeout(() => {
-    //   firstElement.style.animationDirection = 'normal';
-    //   activeElement.style.animationDirection = 'normal';
-    //   deactiveElement.style.animationDirection = 'normal';
-    // }, 1000);
-    deactiveElement.classList.remove('deactive-slide');
-    activeElement.classList.add('deactive-slide');
-    activeElement.classList.remove('active-slide'); 
-    document.getElementsByClassName('carousel-cell')[this.counter].classList.add('active-slide');
+    this.changeActivityElements();
     this.intervalNext();
   }
-  
+
   goToLastSlide(): void {
     this.counter = this.lengthOfCarousell - 1;
-    const activeElement = (document.getElementsByClassName('active-slide')[0] as HTMLElement);
-    const deactiveElement = (document.getElementsByClassName('deactive-slide')[0] as HTMLElement);
-    // activeElement.style.animationDirection = 'reverse !important';
-    // deactiveElement.style.animationDirection = 'reverse !important';
-    deactiveElement.classList.remove('deactive-slide');
-    activeElement.classList.add('deactive-slide');
-    activeElement.classList.remove('active-slide'); 
-    document.getElementsByClassName('carousel-cell')[this.counter].classList.add('active-slide');
-    // const cells = document.getElementsByClassName('carousel-cell');
-    // const howMuchTranslate = 'translateX(-' + (this.counter) * this.sizeOfCarousel + 'px)';
-    // for (let index = 0; index < cells.length; index++) {
-    //   const element = cells[index];
-    //   (element as HTMLElement).style.transition = 'none';
-    //   setTimeout(() => {
-    //     (element as HTMLElement).style.transition = 'all .5s ease-in';
-    //   }, 100);
-    //   (element as HTMLElement).style.transform = howMuchTranslate;
-    // }
-    
+    this.changeActivityElements();
     this.intervalNext();
   }
-  
+
   stopAutoSlide(): void {
     clearInterval(this.autoIntervalObject);
   }
-  
+
+  changeActivityElements(): void {
+    document.getElementsByClassName('deactive-slide')[0]?.classList.remove('deactive-slide');
+    document.getElementsByClassName('active-slide')[0]?.classList.add('deactive-slide');
+    document.getElementsByClassName('active-slide')[0]?.classList.remove('active-slide'); 
+    document.getElementsByClassName('carousel-cell')[this.counter].classList.add('active-slide');
+
+    document.getElementsByClassName('active-dot')[0]?.classList.remove('active-dot');
+    document.getElementsByClassName('angular-content-carousel-dot')[this.counter].classList.add('active-dot');
+    
+  }
 
 }

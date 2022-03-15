@@ -1,5 +1,5 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AngularContentCarouselComponent } from './angular-content-carousel.component';
 
 
@@ -9,7 +9,7 @@ import { AngularContentCarouselComponent } from './angular-content-carousel.comp
     AngularContentCarouselComponent
   ],
   imports: [
-    BrowserModule
+    CommonModule
   ],
   exports: [
     AngularContentCarouselComponent

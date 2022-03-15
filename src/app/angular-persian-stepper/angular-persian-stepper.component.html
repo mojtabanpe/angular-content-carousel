@@ -1,0 +1,45 @@
+<div id="container">
+    <div id="step-prefixes">
+        <div id="step-prefix{{i}}" *ngFor="let label of stepLabels; index as i" class="step-prefix-all" [ngClass]="{active: i===mainStepNumber-2 || i===mainStepNumber-1}">
+            <div class="step-prefix" (click)="changeActiveStep(i)">
+                <div class="span-label-container">
+                    <span class="step-label" [ngClass]="{active: i===mainStepNumber-1}">{{label}}</span>
+                </div>
+                <div class="span-pointer-container">
+                    <span class="step-pointer" [ngClass]="{active: i===mainStepNumber-1}"></span>
+                </div>
+            </div>
+            <div class="seperator" *ngIf="i!==stepLabels.length-1">
+                <span></span>
+            </div>
+        </div>
+    </div>
+  
+    <div id="step-contents">
+        <div class="step-content-container" *ngFor="let content of stepTemplates; index as i">
+            <div id="content{{i}}" class="step-content" [ngClass]="{active: i===mainStepNumber-1}">
+                <ng-container *ngIf="i===mainStepNumber-1; else notActive">
+                    <div class="step-content-text">
+                        <h2 class="mb-5">{{content.title}}</h2>
+                        <p *ngFor="let item of content.text">{{item}}</p>
+                    </div>
+                </ng-container>
+                <ng-template #notActive>
+                    <div class="step-content-text">
+                        <h2>{{content.title}}</h2>
+                    </div>
+                </ng-template>
+                
+            </div>
+        </div>
+    </div>
+  
+    <div id="step-arrows">
+        <div class="step-arrow step-arrow-top" (click)="backNextStep('top')">
+            <img src="assets/img/icons/small/up-arrow.svg" class="filter-modern">
+        </div>
+        <div class="step-arrow step-arrow-down" (click)="backNextStep('down')">
+            <img src="assets/img/icons/small/down-arrow.svg" class="filter-modern">
+        </div>
+    </div>
+  </div>

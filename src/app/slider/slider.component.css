@@ -97,3 +97,22 @@
 :host ::ng-deep .carousel-arrow-right::before {
   transform: rotate(45deg)
 }
+
+:host ::ng-deep .angular-content-carousel-dots {
+  display: flex;
+  position: absolute;
+  bottom: 3rem;
+  right: 50%
+}
+
+:host ::ng-deep .angular-content-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-right: 3px;
+}
+
+:host ::ng-deep .angular-content-carousel-dot.active-dot {
+  background-color: white;
+}

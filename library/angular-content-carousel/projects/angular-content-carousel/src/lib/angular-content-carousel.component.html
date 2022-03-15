@@ -30,6 +30,10 @@
     
     <div class="carousel-arrow carousel-arrow-left cursor-pointer" (click)="goPrev()"></div>
     <div class="carousel-arrow carousel-arrow-right cursor-pointer" (click)="goNext()"></div>
+
+    <div class="angular-content-carousel-dots" *ngIf="dots">
+      <span *ngFor="let dot of [].constructor(lengthOfCarousell); let i = index" class="angular-content-carousel-dot"></span>
+    </div>
   </div>
   
   
